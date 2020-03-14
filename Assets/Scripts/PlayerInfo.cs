@@ -18,7 +18,8 @@ public class PlayerInfo : MonoBehaviour {
     }
 
     void Update() {
-        
+        pastMoves.Add(moveInput);
+        pastJumps.Add(jumpInput);
     }
 
     
