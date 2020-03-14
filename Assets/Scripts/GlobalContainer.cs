@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//used to store global variables
 public class GlobalContainer : MonoBehaviour {
 
-    void Start() {
-        
+    public static GlobalContainer global;
+
+    public List<int> ground_layers; //objects that will cause player to reset jump
+
+    void Awake() {
+        global = this;
     }
 
-    void Update() {
-        
-    }
 }

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     [Range(0f, 1f)] public float horizontal_drag;
 
     public GameObject jumpTrigger;
+    [Range(0f, 10f)] public float jump_speed;
     [SerializeField] private float maxHoldTime, fallGFactor, lowJumpGFactor;
     Timer jumpTimer;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         info = gameObject.GetComponentInParent<PlayerInfo>();
         jumpTimer = GetComponent<Timer>();
+        jumpTimer.duration = maxHoldTime;
     }
 
     void Update() {
@@ -36,9 +38,25 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-        //Jumping
-        if (info.jumpInput >= info.inputThreshold) {
+        //Jumping =-=-=-=-=-=-
+        //start jump
+        if (info.jumpInput >= info.inputThreshold && jumpTrigger.GetComponent<FloorDetector>().isOnGround && !jumpTimer.isActive) {
+            jumpTimer.activate();
+        }
+        //apply jump velocity
+        if (info.jumpInput >= info.inputThreshold && jumpTimer.isActive) {
+            info.rb.velocity = new Vector2(info.rb.velocity.x, jump_speed);
+        }
+        //when no longer holding jump, deactivate jump
+        if (info.jumpInput < info.inputThreshold) {
+            jumpTimer.deactivate();
+        }
 
+        //Apply gravity
+        if (info.rb.velocity.y < 0) { //if player is falling, apply gravity scale
+            info.rb.velocity += Vector2.up * Physics.gravity.y * (fallGFactor - 1) * Time.deltaTime;
+        } else if (info.rb.velocity.y > 0 && info.jumpInput < info.inputThreshold) {
+            info.rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpGFactor - 1) * Time.deltaTime;
         }
     }
 }
