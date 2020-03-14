@@ -15,7 +15,11 @@ public class PlayerController : MonoBehaviour {
     [Range(0f, 10f)] public float jump_speed;
     [SerializeField] private float maxHoldTime, fallGFactor, lowJumpGFactor;
     Timer jumpTimer;
+    public Vector2 moveInput;
+    public Vector2 jumpInput;
 
+    
+    
 
     void Start() {
         info = gameObject.GetComponentInParent<PlayerInfo>();
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        
 
         //Movement
         if (Mathf.Abs(info.moveInput.x) >= info.inputThreshold) {
