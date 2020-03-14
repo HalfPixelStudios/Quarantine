@@ -12,8 +12,14 @@ public class PlayerInfo : MonoBehaviour {
     [HideInInspector] public Vector2 moveInput;
     [HideInInspector] public float jumpInput;
 
+    //Children
+    [HideInInspector] public GameObject sprite;
+
     void Awake() {
+        sprite = GetComponentInChildren<Animator>().gameObject;
+
         rb = GetComponent<Rigidbody2D>();
+
         inputAction = new PlayerInputActions();
 
         inputAction.PlayerControls.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
