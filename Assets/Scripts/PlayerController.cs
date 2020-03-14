@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour {
     public Vector2 moveInput;
     public Vector2 jumpInput;
 
-    
-    
+    //Animations
+    private bool isMoving;
+    private bool facing = true; //1 indicates facing right, 0 indicates facing left
 
     void Start() {
         info = gameObject.GetComponentInParent<PlayerInfo>();
@@ -31,17 +32,18 @@ public class PlayerController : MonoBehaviour {
         
 
         //Movement
+        isMoving = false;
         if (Mathf.Abs(info.moveInput.x) >= info.inputThreshold) {
-            
             info.rb.velocity = new Vector2(info.moveInput.x * move_speed, info.rb.velocity.y);
+            isMoving = true;
         }
-        
+
         if (Mathf.Abs(info.rb.velocity.x) >= 0.1f) { //apply horizontal damping
             info.rb.velocity = new Vector2(info.rb.velocity.x * horizontal_drag, info.rb.velocity.y);
         } else {
             info.rb.velocity = new Vector2(0, info.rb.velocity.y);
         }
-
+        info.sprite.GetComponent<Animator>().SetBool("isMoving", isMoving);
 
         //Jumping =-=-=-=-=-=-
         //start jump
@@ -63,5 +65,18 @@ public class PlayerController : MonoBehaviour {
         } else if (info.rb.velocity.y > 0 && info.jumpInput < info.inputThreshold) {
             info.rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpGFactor - 1) * Time.deltaTime;
         }
+
+
+        //Animation stuff =-=-=-=-=-=-
+
+        //flip player sprite based on previous input
+        if (Mathf.Abs(info.moveInput.x) >= info.inputThreshold) {
+            facing = (info.moveInput.x >= 0 ? true : false);
+            info.sprite.GetComponent<SpriteRenderer>().flipX = !facing;
+        }
+        
+
     }
+
+        
 }
