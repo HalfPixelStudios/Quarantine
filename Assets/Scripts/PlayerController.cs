@@ -19,17 +19,16 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if (Mathf.Abs(info.moveInput.x) >= info.inputThreshold) {
+            
             info.rb.velocity = new Vector2(info.moveInput.x * move_speed, info.rb.velocity.y);
         }
 
-        Debug.Log(info.moveInput);
-        /*
-
+        
         if (Mathf.Abs(info.rb.velocity.x) >= 0.1f) { //apply horizontal damping
-            info.rb.velocity = new Vector2(info.rb.velocity.y * horizontal_drag, info.rb.velocity.y);
+            info.rb.velocity = new Vector2(info.rb.velocity.x * horizontal_drag, info.rb.velocity.y);
         } else {
             info.rb.velocity = new Vector2(0, info.rb.velocity.y);
         }
-        */
+        
     }
 }

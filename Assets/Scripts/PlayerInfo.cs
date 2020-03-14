@@ -21,4 +21,12 @@ public class PlayerInfo : MonoBehaviour {
     void Update() {
         
     }
+
+    private void OnEnable() {
+        inputAction.Enable();
+    }
+
+    private void OnDisable() {
+        inputAction.Disable();
+    }
 }
