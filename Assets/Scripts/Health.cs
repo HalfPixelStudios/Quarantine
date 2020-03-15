@@ -21,18 +21,20 @@ public class Health : MonoBehaviour
     {
         if (health < 0||gameObject.transform.position.y<-5)
         {
+            transform.position = new Vector2(0, 0);
             if (info.isControlled)
             {
-
-                transform.position = new Vector2(0, 0);
+                
                 GameObject g = Instantiate(GlobalContainer.global.player, transform.parent);
                 g.GetComponent<Replay>().jumpInputs = GetComponent<PlayerInfo>().pastJumps;
                 g.GetComponent<Replay>().moveInputs = GetComponent<PlayerInfo>().pastMoves;
-                
+                GlobalContainer.global.players.Add(g);
+                GlobalContainer.global.GetComponent<DeathMenu>().activate();
+
             }
             else
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
         

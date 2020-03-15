@@ -9,6 +9,8 @@ public class GlobalContainer : MonoBehaviour {
 
     public List<int> ground_layers; //objects that will cause player to reset jump
     public GameObject player;
+    public List<GameObject> players=new List<GameObject>();
+    public GameObject deathMenu;
 
     void Awake() {
         global = this;
