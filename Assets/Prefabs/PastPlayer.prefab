@@ -138,8 +138,6 @@ MonoBehaviour:
   maxHoldTime: 0.2
   fallGFactor: 2
   lowJumpGFactor: 2.5
-  moveInput: {x: 0, y: 0}
-  jumpInput: {x: 0, y: 0}
 --- !u!1 &7369215405605259136
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,10 +251,10 @@ GameObject:
   - component: {fileID: 7369215405942938994}
   - component: {fileID: 7369215405942938995}
   - component: {fileID: 7369215405942939007}
-  - component: {fileID: -5670688655823296281}
   - component: {fileID: 8000206245114747942}
+  - component: {fileID: 5540939549653795427}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PastPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,18 +341,8 @@ MonoBehaviour:
   jumpInput: 0
   sprite: {fileID: 0}
   inputThreshold: 0.5
---- !u!114 &-5670688655823296281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7369215405942938992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3750e3ad8db334c4ca9a41fcde482fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  pastMoves: []
+  pastJumps: []
 --- !u!114 &8000206245114747942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,3 +355,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8415939d77d5d4e4981c09ca7339da51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5540939549653795427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369215405942938992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ff669a9fb6549f5baa395ed7beb72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveInputs: []
+  jumpInputs: []

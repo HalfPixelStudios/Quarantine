@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Replay : MonoBehaviour
 {
-    private List<Vector2> moveInputs;
-    private List<float> jumpInputs;
+    public List<Vector2> moveInputs;
+    public List<float> jumpInputs;
     private int index = 0;
     private PlayerInfo pInfo;
 
@@ -21,9 +21,10 @@ public class Replay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        index += 1;
+        
         pInfo.jumpInput = jumpInputs[index];
         pInfo.moveInput = moveInputs[index];
+        index += 1;
 
 
     }
