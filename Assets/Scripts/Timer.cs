@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour {
 
     protected void Update() {
 
-        if (isActive && duration_counter > 0) {
+        if (isActive == true && duration_counter > 0) {
             duration_counter -= Time.deltaTime;
             passiveEffect();
         }
@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour {
 
     }
     public virtual void activate() {
-        if (cooldown_counter > 0 || isActive)return;
+        if (cooldown_counter > 0 || isActive) { return; }
         cooldown_counter = cooldown;
         duration_counter = duration;
         isActive = true;
@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour {
     }
 
     public virtual void deactivate() {
-        if (isActive == false) return; 
+        if (isActive == false) { return; }
         isActive = false;
         deactivateEffect();
     }
