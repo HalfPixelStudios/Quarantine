@@ -5,12 +5,14 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     private int health;
+    private PlayerInfo info;
 
-    private bool isControlled;
+    
     // Start is called before the first frame update
     void Start()
     {
-        isControlled = GetComponent<Replay>() == null;
+        info = GetComponent<PlayerInfo>();
+
 
     }
 
@@ -19,7 +21,7 @@ public class Health : MonoBehaviour
     {
         if (health < 0||gameObject.transform.position.y<-5)
         {
-            if (isControlled)
+            if (info.isControlled)
             {
 
                 transform.position = new Vector2(0, 0);

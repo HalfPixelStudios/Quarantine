@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfo : MonoBehaviour {
+public class PlayerInfo : MonoBehaviour
+{
+    public bool isControlled;
+    
 
     [HideInInspector] public Rigidbody2D rb;
 
@@ -18,19 +21,25 @@ public class PlayerInfo : MonoBehaviour {
     public List<Vector2> pastMoves;
     public List<float> pastJumps;
 
-    void Awake() {
+    void Awake()
+    {
+        isControlled = GetComponent<Replay>() == null;
         sprite = GetComponentInChildren<Animator>().gameObject;
 
         rb = GetComponent<Rigidbody2D>();
         pastMoves= new List<Vector2>();
         pastJumps = new List<float>();
+        
 
     }
 
     void Update() {
+        if (isControlled)
+        {
 
-        pastMoves.Add(moveInput);
-        pastJumps.Add(jumpInput);
+            pastMoves.Add(moveInput);
+            pastJumps.Add(jumpInput);
+        }
     }
 
     
