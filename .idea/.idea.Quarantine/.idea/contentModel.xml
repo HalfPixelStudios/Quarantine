@@ -6,6 +6,7 @@
       <e p="Assets" t="Include">
         <e p="DeathMenu.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="CameraController.cs" t="Include" />
           <e p="FloorDetector.cs" t="Include" />
           <e p="GlobalContainer.cs" t="Include" />
           <e p="Health.cs" t="Include" />
