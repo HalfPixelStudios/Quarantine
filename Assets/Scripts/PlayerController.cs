@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour {
     [Range(0f, 10f)] public float jump_speed;
     [SerializeField] private float maxHoldTime, fallGFactor, lowJumpGFactor;
     Timer jumpTimer;
-    public Vector2 moveInput;
-    public Vector2 jumpInput;
 
     //Animations
     private bool isMoving;
@@ -51,6 +49,7 @@ public class PlayerController : MonoBehaviour {
             jumpTimer.activate();
         }
         //apply jump velocity
+
         if (info.jumpInput >= info.inputThreshold && jumpTimer.isActive) {
             info.rb.velocity = new Vector2(info.rb.velocity.x, jump_speed);
         }
